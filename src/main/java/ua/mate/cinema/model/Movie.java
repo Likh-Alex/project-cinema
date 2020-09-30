@@ -19,7 +19,7 @@ public class Movie {
     @Id
     @Column(name = "movie_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String title;
-    String description;
+    private Long id;
+    private String title;
+    private String description;
 }
