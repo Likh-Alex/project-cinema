@@ -6,7 +6,8 @@ import ua.mate.cinema.service.MovieService;
 
 public class Main {
     private static Injector injector = Injector.getInstance("ua.mate.cinema");
-    private static MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
+    private static MovieService movieService
+            = (MovieService) injector.getInstance(MovieService.class);
 
     public static void main(String[] args) {
         movieService.getAll().forEach(System.out::println);
