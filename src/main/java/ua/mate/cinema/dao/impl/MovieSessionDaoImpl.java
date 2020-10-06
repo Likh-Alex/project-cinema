@@ -45,11 +45,10 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
                     + "join fetch ms.movie "
                     + "join fetch ms.cinemaHall "
                     + "where ms.movie.id = :movieId "
-                    + "and ms.showTime >= :dateStart "
-                    + "and ms.showTime < :dateEnd", MovieSession.class);
+                    + "and ms.showTime between :startDay and :endDay", MovieSession.class);
             findAvailableSessionsQuery.setParameter("movieId", movieId);
-            findAvailableSessionsQuery.setParameter("dateStart", date.atStartOfDay());
-            findAvailableSessionsQuery.setParameter("dateEnd", date.atTime(LocalTime.MAX));
+            findAvailableSessionsQuery.setParameter("startDay", date.atStartOfDay());
+            findAvailableSessionsQuery.setParameter("endDay", date.atTime(LocalTime.MAX));
             return findAvailableSessionsQuery.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't find available sessions", e);
