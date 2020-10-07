@@ -31,9 +31,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public User register(String email, String password) {
         User user = new User();
         user.setEmail(email);
-        user.setSalt(HashUtil.getSalt());
-        String hashPassword = HashUtil.hashPassword(password, user.getSalt());
-        user.setPassword(hashPassword);
+        user.setPassword(password);
         return userService.add(user);
     }
 }

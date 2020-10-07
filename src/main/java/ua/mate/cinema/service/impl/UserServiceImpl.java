@@ -6,6 +6,7 @@ import ua.mate.cinema.lib.Inject;
 import ua.mate.cinema.lib.Service;
 import ua.mate.cinema.model.User;
 import ua.mate.cinema.service.interfaces.UserService;
+import ua.mate.cinema.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -14,6 +15,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) {
+        user.setSalt(HashUtil.getSalt());
+        String hashPassword = HashUtil.hashPassword(user.getPassword(), user.getSalt());
+        user.setPassword(hashPassword);
         return userDao.add(user);
     }
 
