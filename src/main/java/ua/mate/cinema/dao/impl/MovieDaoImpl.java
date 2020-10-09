@@ -26,7 +26,7 @@ public class MovieDaoImpl implements MovieDao {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert Movie entity", e);
+            throw new DataProcessingException("Can't add movie entity " + movie, e);
         } finally {
             if (session != null) {
                 session.close();
