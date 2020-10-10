@@ -1,13 +1,15 @@
 package ua.mate.cinema.model;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,17 +17,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "movie_sessions")
-public class MovieSession {
+@Table(name = "shopping_carts")
+public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_session_id")
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
-    @ManyToOne
-    @JoinColumn(name = "cinema_hall_id")
-    private CinemaHall cinemaHall;
-    private LocalDateTime showTime;
+    @OneToMany
+    private List<Ticket> tickets;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "shopping_cart_id")
+    private User user;
 }

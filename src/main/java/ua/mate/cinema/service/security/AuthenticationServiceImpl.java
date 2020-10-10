@@ -5,6 +5,7 @@ import javax.naming.AuthenticationException;
 import ua.mate.cinema.lib.Inject;
 import ua.mate.cinema.lib.Service;
 import ua.mate.cinema.model.User;
+import ua.mate.cinema.service.interfaces.ShoppingCartService;
 import ua.mate.cinema.service.interfaces.UserService;
 import ua.mate.cinema.util.HashUtil;
 
@@ -12,6 +13,8 @@ import ua.mate.cinema.util.HashUtil;
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     private UserService userService;
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User login(String email, String password)
@@ -32,6 +35,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        return userService.add(user);
+        shoppingCartService.registerNewShoppingCart(userService.add(user));
+        return user;
     }
 }
