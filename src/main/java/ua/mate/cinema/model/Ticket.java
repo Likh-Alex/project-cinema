@@ -1,6 +1,5 @@
 package ua.mate.cinema.model;
 
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,17 +14,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "movie_sessions")
-public class MovieSession {
+@Table(name = "tickets")
+public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_session_id")
+    @Column(name = "ticket_id")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+    @JoinColumn(name = "movie_session_id")
+    private MovieSession movieSession;
     @ManyToOne
-    @JoinColumn(name = "cinema_hall_id")
-    private CinemaHall cinemaHall;
-    private LocalDateTime showTime;
+    @JoinColumn(name = "user_id")
+    private User user;
 }

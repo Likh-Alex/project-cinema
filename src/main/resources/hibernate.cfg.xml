@@ -13,9 +13,11 @@
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
-        <mapping class="ua.mate.cinema.model.Movie" />
         <mapping class="ua.mate.cinema.model.CinemaHall"/>
+        <mapping class="ua.mate.cinema.model.Movie" />
         <mapping class="ua.mate.cinema.model.MovieSession"/>
+        <mapping class="ua.mate.cinema.model.ShoppingCart"/>
+        <mapping class="ua.mate.cinema.model.Ticket"/>
         <mapping class="ua.mate.cinema.model.User"/>
     </session-factory>
 </hibernate-configuration>
