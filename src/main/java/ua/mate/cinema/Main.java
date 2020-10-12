@@ -58,6 +58,9 @@ public class Main {
         shoppingCartService.addSession(harryPotterSession, authBob);
         shoppingCartService.addSession(ironManSession, authBob);
         System.out.println("user shopping cart result: " + shoppingCartService.getByUser(authBob));
+
+        System.out.println("0000");
+        System.out.println(shoppingCartService.getByUser(authBob).getUser());
     }
 
     private static Movie getMovie(String title, String description) {
