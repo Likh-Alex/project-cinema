@@ -19,5 +19,6 @@
         <mapping class="ua.mate.cinema.model.ShoppingCart"/>
         <mapping class="ua.mate.cinema.model.Ticket"/>
         <mapping class="ua.mate.cinema.model.User"/>
+        <mapping class="ua.mate.cinema.model.Order"/>
     </session-factory>
 </hibernate-configuration>
