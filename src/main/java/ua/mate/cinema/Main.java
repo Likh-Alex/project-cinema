@@ -11,6 +11,7 @@ import ua.mate.cinema.model.User;
 import ua.mate.cinema.service.interfaces.CinemaHallService;
 import ua.mate.cinema.service.interfaces.MovieService;
 import ua.mate.cinema.service.interfaces.MovieSessionService;
+import ua.mate.cinema.service.interfaces.OrderService;
 import ua.mate.cinema.service.interfaces.ShoppingCartService;
 import ua.mate.cinema.service.security.AuthenticationService;
 
@@ -28,6 +29,8 @@ public class Main {
             = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
     private static MovieSessionService movieSessionService
             = (MovieSessionService) injector.getInstance(MovieSessionService.class);
+    private static OrderService orderService
+            = (OrderService) injector.getInstance(OrderService.class);
 
     public static void main(String[] args) throws AuthenticationException {
         User bob = new User();
@@ -59,8 +62,8 @@ public class Main {
         shoppingCartService.addSession(ironManSession, authBob);
         System.out.println("user shopping cart result: " + shoppingCartService.getByUser(authBob));
 
-        System.out.println("0000");
-        System.out.println(shoppingCartService.getByUser(authBob).getUser());
+        orderService.completeOrder(shoppingCartService.getByUser(authBob).getTickets(), authBob);
+        orderService.getOrderHistory(authBob).forEach(System.out::println);
     }
 
     private static Movie getMovie(String title, String description) {
