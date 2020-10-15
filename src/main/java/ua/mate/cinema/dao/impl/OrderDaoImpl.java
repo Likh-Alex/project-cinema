@@ -25,7 +25,7 @@ public class OrderDaoImpl implements OrderDao {
             transaction = session.beginTransaction();
             session.persist(order);
             transaction.commit();
-            log.info("order added successfully");
+            log.info("Order added successfully");
             return order;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {

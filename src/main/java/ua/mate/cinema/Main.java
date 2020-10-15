@@ -41,9 +41,12 @@ public class Main {
         bob.setPassword("1234");
         User authBob = authService.register(bob.getEmail(), bob.getPassword());
 
-        log.info("User auth successfully");
-        System.out.println("auth successful: " + authService.login(authBob.getEmail(), "1234"));
-        System.out.println("user shopping cart empty: " + cartService.getByUser(authBob));
+        try {
+            log.info("User auth successfully" + authService.login(authBob.getEmail(), "1234"));
+        } catch (AuthenticationException e) {
+            log.warn("Failed to log in", e);
+        }
+        log.info("user shopping cart empty: " + cartService.getByUser(authBob));
 
         Movie harryPotterMovie = getMovie("Harry Potter", "Good movie");
         movieService.add(harryPotterMovie);
@@ -64,10 +67,10 @@ public class Main {
 
         shoppingCartService.addSession(harryPotterSession, authBob);
         shoppingCartService.addSession(ironManSession, authBob);
-        System.out.println("user shopping cart result: " + shoppingCartService.getByUser(authBob));
+        log.info("user shopping cart result: " + shoppingCartService.getByUser(authBob));
 
         orderService.completeOrder(shoppingCartService.getByUser(authBob).getTickets(), authBob);
-        orderService.getOrderHistory(authBob).forEach(System.out::println);
+        orderService.getOrderHistory(authBob).forEach(log::info);
     }
 
     private static Movie getMovie(String title, String description) {
