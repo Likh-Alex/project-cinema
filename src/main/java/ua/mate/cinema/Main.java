@@ -3,6 +3,7 @@ package ua.mate.cinema;
 import java.time.LocalDateTime;
 import java.time.Month;
 import javax.naming.AuthenticationException;
+import org.apache.log4j.Logger;
 import ua.mate.cinema.lib.Injector;
 import ua.mate.cinema.model.CinemaHall;
 import ua.mate.cinema.model.Movie;
@@ -16,6 +17,8 @@ import ua.mate.cinema.service.interfaces.ShoppingCartService;
 import ua.mate.cinema.service.security.AuthenticationService;
 
 public class Main {
+    private static final Logger log = Logger.getLogger(Main.class);
+
     private static Injector injector = Injector.getInstance("ua.mate.cinema");
     private static AuthenticationService authService
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
@@ -38,6 +41,7 @@ public class Main {
         bob.setPassword("1234");
         User authBob = authService.register(bob.getEmail(), bob.getPassword());
 
+        log.info("User auth successfully");
         System.out.println("auth successful: " + authService.login(authBob.getEmail(), "1234"));
         System.out.println("user shopping cart empty: " + cartService.getByUser(authBob));
 
@@ -70,6 +74,7 @@ public class Main {
         Movie movie = new Movie();
         movie.setTitle(title);
         movie.setDescription(description);
+        log.info("Movie created successfully");
         return movie;
     }
 
@@ -77,6 +82,7 @@ public class Main {
         CinemaHall hall = new CinemaHall();
         hall.setCapacity(capacity);
         hall.setDescription(description);
+        log.info("Cinema hall created successfully");
         return hall;
     }
 
@@ -85,6 +91,7 @@ public class Main {
         session.setMovie(movie);
         session.setCinemaHall(hall);
         session.setShowTime(time);
+        log.info("Movie session created successfully");
         return session;
     }
 }

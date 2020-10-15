@@ -1,6 +1,7 @@
 package ua.mate.cinema.dao.impl;
 
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -13,6 +14,8 @@ import ua.mate.cinema.util.HibernateUtil;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
+    private static final Logger log = Logger.getLogger(OrderDaoImpl.class);
+
     @Override
     public Order add(Order order) {
         Session session = null;
@@ -22,6 +25,7 @@ public class OrderDaoImpl implements OrderDao {
             transaction = session.beginTransaction();
             session.persist(order);
             transaction.commit();
+            log.info("order added successfully");
             return order;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
