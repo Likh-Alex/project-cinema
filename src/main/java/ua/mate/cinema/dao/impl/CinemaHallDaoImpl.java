@@ -1,6 +1,7 @@
 package ua.mate.cinema.dao.impl;
 
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,6 +13,8 @@ import ua.mate.cinema.util.HibernateUtil;
 
 @Dao
 public class CinemaHallDaoImpl implements CinemaHallDao {
+    private static final Logger log = Logger.getLogger(CinemaHallDaoImpl.class);
+
     @Override
     public CinemaHall add(CinemaHall cinemaHall) {
         Session session = null;
@@ -21,6 +24,7 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             transaction = session.beginTransaction();
             session.persist(cinemaHall);
             transaction.commit();
+            log.info("Cinema hall added successfully");
             return cinemaHall;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {

@@ -1,5 +1,6 @@
 package ua.mate.cinema.dao.impl;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,6 +13,8 @@ import ua.mate.cinema.util.HibernateUtil;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
+    private static final Logger log = Logger.getLogger(ShoppingCartDaoImpl.class);
+
     @Override
     public ShoppingCart add(ShoppingCart shoppingCart) {
         Session session = null;
@@ -21,6 +24,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             transaction = session.beginTransaction();
             session.saveOrUpdate(shoppingCart);
             transaction.commit();
+            log.info("Shopping cart added successfully");
             return shoppingCart;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
@@ -54,6 +58,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             session = HibernateUtil.getSessionFactory().openSession().getSession();
             transaction = session.beginTransaction();
             session.update(shoppingCart);
+            log.info("Shopping cart updated successfully");
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
