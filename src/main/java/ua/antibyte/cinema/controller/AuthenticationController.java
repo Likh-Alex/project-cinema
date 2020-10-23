@@ -14,7 +14,7 @@ public class AuthenticationController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registration")
     public String register(@RequestBody UserDto userDto) {
         authService.register(userDto.getEmail(), userDto.getPassword());
         return "successful registration";
