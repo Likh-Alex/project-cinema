@@ -22,7 +22,7 @@ public class MovieController {
         this.movieDtoMapper = movieDtoMapper;
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public String add(@RequestBody MovieDto movieDto) {
         movieService.add(movieDtoMapper.mapDtoToMovie(movieDto));
         return "successful";
