@@ -22,4 +22,9 @@ public class Movie {
     private Long id;
     private String title;
     private String description;
+
+    public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 }

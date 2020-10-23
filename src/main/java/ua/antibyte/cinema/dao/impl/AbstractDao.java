@@ -38,6 +38,15 @@ public abstract class AbstractDao<T> {
         }
     }
 
+    public T findById(Long id, Class<T> clazz) {
+        try (Session session = sessionFactory.openSession().getSession()) {
+            return session.get(clazz, id);
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find " + clazz.getSimpleName()
+                    + " by id " + id, e);
+        }
+    }
+
     public List<T> getAll(Class<T> clazz) {
         try (Session session = sessionFactory.openSession().getSession()) {
             return session.createQuery("from " + clazz.getSimpleName(), clazz)
