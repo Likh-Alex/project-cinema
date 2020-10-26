@@ -20,4 +20,9 @@ public class CinemaHall {
     private Long id;
     private int capacity;
     private String description;
+
+    public CinemaHall(int capacity, String description) {
+        this.capacity = capacity;
+        this.description = description;
+    }
 }

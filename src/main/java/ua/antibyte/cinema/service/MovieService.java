@@ -6,5 +6,7 @@ import ua.antibyte.cinema.model.Movie;
 public interface MovieService {
     Movie add(Movie movie);
 
+    Movie findById(Long id);
+
     List<Movie> getAll();
 }
