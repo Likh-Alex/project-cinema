@@ -2,7 +2,8 @@ package ua.antibyte.cinema.service.mapper;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.MovieSession;
-import ua.antibyte.cinema.model.dto.MovieSessionDto;
+import ua.antibyte.cinema.model.dto.MovieSessionRequestDto;
+import ua.antibyte.cinema.model.dto.MovieSessionResponseDto;
 import ua.antibyte.cinema.service.CinemaHallService;
 import ua.antibyte.cinema.service.MovieService;
 
@@ -16,8 +17,8 @@ public class MovieSessionDtoMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSessionDto mapMovieSessionToDto(MovieSession movieSession) {
-        MovieSessionDto movieSessionDto = new MovieSessionDto();
+    public MovieSessionResponseDto mapMovieSessionToResponseDto(MovieSession movieSession) {
+        MovieSessionResponseDto movieSessionDto = new MovieSessionResponseDto();
         movieSessionDto.setId(movieSession.getId());
         movieSessionDto.setMovieId(movieSession.getMovie().getId());
         movieSessionDto.setCinemaHallId(movieSession.getCinemaHall().getId());
@@ -25,7 +26,7 @@ public class MovieSessionDtoMapper {
         return movieSessionDto;
     }
 
-    public MovieSession mapDtoToMovieSession(MovieSessionDto movieSessionDto) {
+    public MovieSession mapRequestDtoToMovieSession(MovieSessionRequestDto movieSessionDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.findById(movieSessionDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.findById(movieSessionDto.getCinemaHallId()));

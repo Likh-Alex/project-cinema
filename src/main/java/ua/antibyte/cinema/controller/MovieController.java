@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.antibyte.cinema.model.dto.MovieDto;
+import ua.antibyte.cinema.model.dto.MovieRequestDto;
+import ua.antibyte.cinema.model.dto.MovieResponseDto;
 import ua.antibyte.cinema.service.MovieService;
 import ua.antibyte.cinema.service.mapper.MovieDtoMapper;
 
@@ -23,15 +24,15 @@ public class MovieController {
     }
 
     @PostMapping
-    public String add(@RequestBody MovieDto movieDto) {
-        movieService.add(movieDtoMapper.mapDtoToMovie(movieDto));
+    public String add(@RequestBody MovieRequestDto movieRequestDto) {
+        movieService.add(movieDtoMapper.mapRequestDtoToMovie(movieRequestDto));
         return "successful";
     }
 
     @GetMapping
-    public List<MovieDto> getAll() {
+    public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
-                .map(movieDtoMapper::mapMovieToDto)
+                .map(movieDtoMapper::mapMovieToResponseDto)
                 .collect(Collectors.toList());
     }
 }

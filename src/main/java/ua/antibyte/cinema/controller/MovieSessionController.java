@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ua.antibyte.cinema.model.dto.MovieSessionDto;
+import ua.antibyte.cinema.model.dto.MovieSessionRequestDto;
+import ua.antibyte.cinema.model.dto.MovieSessionResponseDto;
 import ua.antibyte.cinema.service.MovieSessionService;
 import ua.antibyte.cinema.service.mapper.MovieSessionDtoMapper;
 
@@ -27,17 +28,17 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public String add(@RequestBody MovieSessionDto movieSessionDto) {
-        movieSessionService.add(movieSessionDtoMapper.mapDtoToMovieSession(movieSessionDto));
+    public String add(@RequestBody MovieSessionRequestDto movieSessionDto) {
+        movieSessionService.add(movieSessionDtoMapper.mapRequestDtoToMovieSession(movieSessionDto));
         return "successful";
     }
 
     @GetMapping("/available")
-    public List<MovieSessionDto> getAvailableMovieSessions(
+    public List<MovieSessionResponseDto> getAvailableMovieSessions(
             @RequestParam Long movieId,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(movieSessionDtoMapper::mapMovieSessionToDto)
+                .map(movieSessionDtoMapper::mapMovieSessionToResponseDto)
                 .collect(Collectors.toList());
     }
 }
