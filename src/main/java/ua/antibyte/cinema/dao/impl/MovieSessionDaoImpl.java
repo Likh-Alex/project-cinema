@@ -39,4 +39,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             throw new DataProcessingException("Can't find available sessions", e);
         }
     }
+
+    @Override
+    public MovieSession findById(Long id) {
+        return super.findById(id, MovieSession.class);
+    }
 }

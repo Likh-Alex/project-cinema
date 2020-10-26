@@ -1,6 +1,5 @@
 package ua.antibyte.cinema.service.security;
 
-import java.util.Optional;
 import javax.naming.AuthenticationException;
 import org.springframework.stereotype.Service;
 import ua.antibyte.cinema.model.User;
@@ -22,13 +21,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String email, String password)
             throws AuthenticationException {
-        Optional<User> optionalUser = userService.findByEmail(email);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            String hashPassword = HashUtil.hashPassword(password, user.getSalt());
-            if (user.getPassword().equals(hashPassword)) {
-                return user;
-            }
+        User user = userService.findByEmail(email);
+        String hashPassword = HashUtil.hashPassword(password, user.getSalt());
+        if (user.getPassword().equals(hashPassword)) {
+            return user;
         }
         throw new AuthenticationException("Incorrect login or password");
     }
