@@ -16,7 +16,6 @@ public class ShoppingCartMapper {
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
         shoppingCartResponseDto.setTicketIds(ticketIds);
-        shoppingCartResponseDto.setUserId(shoppingCart.getUser().getId());
         return shoppingCartResponseDto;
     }
 }

@@ -42,7 +42,7 @@ public class Inject {
 
         authenticationService.register("bob@gmail.com", "1234");
 
-        return "inject";
+        return "Data was successfully injected";
     }
 
     private MovieSession createMovieSession(Movie movie, CinemaHall cinemaHall,

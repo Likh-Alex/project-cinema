@@ -16,7 +16,7 @@ import ua.antibyte.cinema.service.mapper.ShoppingCartMapper;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private final ShoppingCartMapper shoppingCartMapping;
+    private final ShoppingCartMapper shoppingCartMapper;
     private final ShoppingCartService shoppingCartService;
     private final MovieSessionService movieSessionService;
     private final UserService userService;
@@ -25,7 +25,7 @@ public class ShoppingCartController {
                                   ShoppingCartService shoppingCartService,
                                   MovieSessionService movieSessionService,
                                   UserService userService) {
-        this.shoppingCartMapping = shoppingCartMapping;
+        this.shoppingCartMapper = shoppingCartMapping;
         this.shoppingCartService = shoppingCartService;
         this.movieSessionService = movieSessionService;
         this.userService = userService;
@@ -41,7 +41,7 @@ public class ShoppingCartController {
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
         User user = userService.findById(userId);
-        return shoppingCartMapping
+        return shoppingCartMapper
                 .mapShoppingCartToResponseDto(shoppingCartService.getByUser(user));
     }
 }

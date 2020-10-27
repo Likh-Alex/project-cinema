@@ -1,5 +1,6 @@
 package ua.antibyte.cinema.service.impl;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import ua.antibyte.cinema.dao.UserDao;
 import ua.antibyte.cinema.model.User;
@@ -23,8 +24,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email).orElseThrow();
+    public Optional<User> findByEmail(String email) {
+        return userDao.findByEmail(email);
     }
 
     @Override
