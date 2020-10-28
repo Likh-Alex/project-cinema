@@ -30,7 +30,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 return user;
             }
         }
-        throw new AuthenticationException("Incorrect login or password");
+        throw new AuthenticationException("Incorrect email or password");
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface ShoppingCartService {
      * @param movieSession Contains the information required for a ticket
      * @param user - user who wan't to buy a ticket for a specific MovieSession
      */
-    void addSession(MovieSession movieSession, User user);
+    void addMovieSession(MovieSession movieSession, User user);
 
     ShoppingCart getByUser(User user);
 

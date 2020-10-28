@@ -28,9 +28,8 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public String add(@RequestBody MovieSessionRequestDto movieSessionDto) {
+    public void add(@RequestBody MovieSessionRequestDto movieSessionDto) {
         movieSessionService.add(movieSessionDtoMapper.mapRequestDtoToMovieSession(movieSessionDto));
-        return "successful";
     }
 
     @GetMapping("/available")

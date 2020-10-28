@@ -31,4 +31,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             throw new DataProcessingException("Can't find user by email " + email, e);
         }
     }
+
+    @Override
+    public User findById(Long id) {
+        return super.findById(id, User.class);
+    }
 }
