@@ -7,8 +7,6 @@ import ua.antibyte.cinema.annotation.EmailValidation;
 import ua.antibyte.cinema.annotation.FieldsValueMatch;
 
 @Data
-
-
 @FieldsValueMatch(
         field = "password",
         fieldMatch = "repeatPassword",
