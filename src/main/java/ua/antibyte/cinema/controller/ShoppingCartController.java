@@ -1,5 +1,7 @@
 package ua.antibyte.cinema.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,15 +34,17 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/movie-sessions")
-    public void addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
+    public void addMovieSession(@RequestParam Long movieSessionId, Authentication authentication) {
         MovieSession movieSession = movieSessionService.findById(movieSessionId);
-        User user = userService.findById(userId);
+        String userEmail = ((UserDetails) authentication.getPrincipal()).getUsername();
+        User user = userService.findByEmail(userEmail).get();
         shoppingCartService.addMovieSession(movieSession, user);
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        User user = userService.findById(userId);
+    public ShoppingCartResponseDto getByUser(Authentication authentication) {
+        String userEmail = ((UserDetails) authentication.getPrincipal()).getUsername();
+        User user = userService.findByEmail(userEmail).get();
         return shoppingCartMapper
                 .mapShoppingCartToResponseDto(shoppingCartService.getByUser(user));
     }
