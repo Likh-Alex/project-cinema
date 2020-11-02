@@ -3,7 +3,6 @@ package ua.antibyte.cinema.controller;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.antibyte.cinema.model.CinemaHall;
@@ -55,10 +54,7 @@ public class Inject {
         user.setRoles(Set.of(roleService.getRoleByName("USER"),
                 roleService.getRoleByName("ADMIN")));
         shoppingCartService.registerNewShoppingCart(userService.add(user));
-    }
 
-    @GetMapping
-    public String inject() {
         Movie ironMan = new Movie("Iron Man", "description");
         movieService.add(ironMan);
 
@@ -67,8 +63,6 @@ public class Inject {
 
         MovieSession movieSession = createMovieSession(ironMan, whiteRoom, LocalDateTime.now());
         movieSessionService.add(movieSession);
-
-        return "Data was successfully injected";
     }
 
     private MovieSession createMovieSession(Movie movie, CinemaHall cinemaHall,

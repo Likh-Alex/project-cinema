@@ -19,19 +19,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> userOptional = userService.findByEmail(email);
-        org.springframework.security.core.userdetails.User.UserBuilder userBuilder = null;
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            userBuilder = org.springframework.security.core.userdetails
+            org.springframework.security.core.userdetails.User.UserBuilder userBuilder
+                    = org.springframework.security.core.userdetails
                     .User.withUsername(user.getEmail());
             userBuilder.password(user.getPassword());
             String[] roles = user.getRoles().stream()
                     .map(role -> role.getRoleName().toString())
                     .toArray(String[]::new);
             userBuilder.roles(roles);
+            return userBuilder.build();
         } else {
             throw new UsernameNotFoundException("User with " + email + "email, not found");
         }
-        return userBuilder.build();
     }
 }
