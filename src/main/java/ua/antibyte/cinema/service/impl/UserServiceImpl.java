@@ -1,25 +1,25 @@
 package ua.antibyte.cinema.service.impl;
 
 import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.antibyte.cinema.dao.UserDao;
 import ua.antibyte.cinema.model.User;
 import ua.antibyte.cinema.service.UserService;
-import ua.antibyte.cinema.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User add(User user) {
-        user.setSalt(HashUtil.getSalt());
-        String hashPassword = HashUtil.hashPassword(user.getPassword(), user.getSalt());
-        user.setPassword(hashPassword);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userDao.add(user);
     }
 
