@@ -1,4 +1,4 @@
-package ua.antibyte.cinema.model.dto;
+package ua.antibyte.cinema.model.dto.response;
 
 import java.util.List;
 import lombok.Data;

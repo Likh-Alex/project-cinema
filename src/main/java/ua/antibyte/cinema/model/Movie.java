@@ -10,11 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "movies")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Movie {
     @Id
     @Column(name = "movie_id")

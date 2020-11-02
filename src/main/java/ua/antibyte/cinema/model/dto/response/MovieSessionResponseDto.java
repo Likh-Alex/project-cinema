@@ -1,4 +1,4 @@
-package ua.antibyte.cinema.model.dto;
+package ua.antibyte.cinema.model.dto.response;
 
 import java.time.LocalDateTime;
 import lombok.Data;

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ua.antibyte.cinema.model.dto.UserResponseDto;
+import ua.antibyte.cinema.model.dto.response.UserResponseDto;
 import ua.antibyte.cinema.service.UserService;
 import ua.antibyte.cinema.service.mapper.UserMapper;
 

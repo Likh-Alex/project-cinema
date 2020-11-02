@@ -2,7 +2,7 @@ package ua.antibyte.cinema.service.mapper;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.User;
-import ua.antibyte.cinema.model.dto.UserResponseDto;
+import ua.antibyte.cinema.model.dto.response.UserResponseDto;
 
 @Component
 public class UserMapper {
