@@ -1,10 +1,9 @@
-package ua.antibyte.cinema.controller;
+package ua.antibyte.cinema.service.inject;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.CinemaHall;
 import ua.antibyte.cinema.model.Movie;
 import ua.antibyte.cinema.model.MovieSession;
@@ -17,8 +16,7 @@ import ua.antibyte.cinema.service.RoleService;
 import ua.antibyte.cinema.service.ShoppingCartService;
 import ua.antibyte.cinema.service.UserService;
 
-@RestController
-@RequestMapping("/inject")
+@Component
 public class Inject {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
