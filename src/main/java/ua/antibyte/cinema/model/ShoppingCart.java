@@ -11,10 +11,10 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(name = "shopping_carts")
+@Data
+@NoArgsConstructor
 public class ShoppingCart {
     @Id
     private Long id;

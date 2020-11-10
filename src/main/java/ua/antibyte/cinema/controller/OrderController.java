@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.antibyte.cinema.model.Ticket;
 import ua.antibyte.cinema.model.User;
-import ua.antibyte.cinema.model.dto.OrderResponseDto;
+import ua.antibyte.cinema.model.dto.response.OrderResponseDto;
 import ua.antibyte.cinema.service.OrderService;
 import ua.antibyte.cinema.service.ShoppingCartService;
 import ua.antibyte.cinema.service.UserService;

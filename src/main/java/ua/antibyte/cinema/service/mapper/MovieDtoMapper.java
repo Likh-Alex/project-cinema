@@ -2,8 +2,8 @@ package ua.antibyte.cinema.service.mapper;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.Movie;
-import ua.antibyte.cinema.model.dto.MovieRequestDto;
-import ua.antibyte.cinema.model.dto.MovieResponseDto;
+import ua.antibyte.cinema.model.dto.request.MovieRequestDto;
+import ua.antibyte.cinema.model.dto.response.MovieResponseDto;
 
 @Component
 public class MovieDtoMapper {

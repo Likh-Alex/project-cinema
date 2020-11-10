@@ -2,8 +2,8 @@ package ua.antibyte.cinema.service.mapper;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.MovieSession;
-import ua.antibyte.cinema.model.dto.MovieSessionRequestDto;
-import ua.antibyte.cinema.model.dto.MovieSessionResponseDto;
+import ua.antibyte.cinema.model.dto.request.MovieSessionRequestDto;
+import ua.antibyte.cinema.model.dto.response.MovieSessionResponseDto;
 import ua.antibyte.cinema.service.CinemaHallService;
 import ua.antibyte.cinema.service.MovieService;
 

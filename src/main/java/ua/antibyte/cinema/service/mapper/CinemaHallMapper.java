@@ -2,8 +2,8 @@ package ua.antibyte.cinema.service.mapper;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.CinemaHall;
-import ua.antibyte.cinema.model.dto.CinemaHallRequestDto;
-import ua.antibyte.cinema.model.dto.CinemaHallResponseDto;
+import ua.antibyte.cinema.model.dto.request.CinemaHallRequestDto;
+import ua.antibyte.cinema.model.dto.response.CinemaHallResponseDto;
 
 @Component
 public class CinemaHallMapper {

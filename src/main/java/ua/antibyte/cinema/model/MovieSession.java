@@ -12,10 +12,10 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(name = "movie_sessions")
+@NoArgsConstructor
+@Data
 public class MovieSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

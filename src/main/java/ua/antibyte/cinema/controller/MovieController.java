@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.antibyte.cinema.model.dto.MovieRequestDto;
-import ua.antibyte.cinema.model.dto.MovieResponseDto;
+import ua.antibyte.cinema.model.dto.request.MovieRequestDto;
+import ua.antibyte.cinema.model.dto.response.MovieResponseDto;
 import ua.antibyte.cinema.service.MovieService;
 import ua.antibyte.cinema.service.mapper.MovieDtoMapper;
 

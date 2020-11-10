@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.ShoppingCart;
 import ua.antibyte.cinema.model.Ticket;
-import ua.antibyte.cinema.model.dto.ShoppingCartResponseDto;
+import ua.antibyte.cinema.model.dto.response.ShoppingCartResponseDto;
 
 @Component
 public class ShoppingCartMapper {

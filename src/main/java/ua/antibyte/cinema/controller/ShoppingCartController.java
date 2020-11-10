@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.antibyte.cinema.model.MovieSession;
 import ua.antibyte.cinema.model.User;
-import ua.antibyte.cinema.model.dto.ShoppingCartResponseDto;
+import ua.antibyte.cinema.model.dto.response.ShoppingCartResponseDto;
 import ua.antibyte.cinema.service.MovieSessionService;
 import ua.antibyte.cinema.service.ShoppingCartService;
 import ua.antibyte.cinema.service.UserService;

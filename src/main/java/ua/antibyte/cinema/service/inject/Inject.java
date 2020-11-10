@@ -1,36 +1,58 @@
-package ua.antibyte.cinema.controller;
+package ua.antibyte.cinema.service.inject;
 
 import java.time.LocalDateTime;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Set;
+import javax.annotation.PostConstruct;
+import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.CinemaHall;
 import ua.antibyte.cinema.model.Movie;
 import ua.antibyte.cinema.model.MovieSession;
+import ua.antibyte.cinema.model.Role;
+import ua.antibyte.cinema.model.User;
 import ua.antibyte.cinema.service.CinemaHallService;
 import ua.antibyte.cinema.service.MovieService;
 import ua.antibyte.cinema.service.MovieSessionService;
-import ua.antibyte.cinema.service.security.AuthenticationService;
+import ua.antibyte.cinema.service.RoleService;
+import ua.antibyte.cinema.service.ShoppingCartService;
+import ua.antibyte.cinema.service.UserService;
 
-@RestController
-@RequestMapping("/inject")
+@Component
 public class Inject {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
     private final MovieSessionService movieSessionService;
-    private final AuthenticationService authenticationService;
+    private final RoleService roleService;
+    private final UserService userService;
+    private final ShoppingCartService shoppingCartService;
 
-    public Inject(MovieService movieService, CinemaHallService cinemaHallService,
+    public Inject(MovieService movieService,
+                  CinemaHallService cinemaHallService,
                   MovieSessionService movieSessionService,
-                  AuthenticationService authenticationService) {
+                  RoleService roleService,
+                  UserService userService,
+                  ShoppingCartService shoppingCartService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
         this.movieSessionService = movieSessionService;
-        this.authenticationService = authenticationService;
+        this.roleService = roleService;
+        this.userService = userService;
+        this.shoppingCartService = shoppingCartService;
     }
 
-    @GetMapping
-    public String inject() {
+    @PostConstruct
+    private void init() {
+        Role adminRole = Role.of("ADMIN");
+        Role userRole = Role.of("USER");
+        roleService.add(adminRole);
+        roleService.add(userRole);
+
+        User user = new User();
+        user.setEmail("bob@gmail.com");
+        user.setPassword("1234");
+        user.setRoles(Set.of(roleService.getRoleByName("USER"),
+                roleService.getRoleByName("ADMIN")));
+        shoppingCartService.registerNewShoppingCart(userService.add(user));
+
         Movie ironMan = new Movie("Iron Man", "description");
         movieService.add(ironMan);
 
@@ -39,10 +61,6 @@ public class Inject {
 
         MovieSession movieSession = createMovieSession(ironMan, whiteRoom, LocalDateTime.now());
         movieSessionService.add(movieSession);
-
-        authenticationService.register("bob@gmail.com", "1234");
-
-        return "Data was successfully injected";
     }
 
     private MovieSession createMovieSession(Movie movie, CinemaHall cinemaHall,

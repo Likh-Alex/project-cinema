@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 import ua.antibyte.cinema.model.Order;
 import ua.antibyte.cinema.model.Ticket;
-import ua.antibyte.cinema.model.dto.OrderResponseDto;
+import ua.antibyte.cinema.model.dto.response.OrderResponseDto;
 
 @Component
 public class OrderMapper {

@@ -1,4 +1,4 @@
-package ua.antibyte.cinema.model.dto;
+package ua.antibyte.cinema.model.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
