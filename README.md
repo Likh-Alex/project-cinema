@@ -3,6 +3,9 @@
 In this project used N-tier architecture with DB layer, DAO layer, Service layer, Controllers layer and View layer. <br>
 Project was developed according to SOLID principles with authorization and authentication.
 
+#### UML diagram that describes the relationship between the entities.
+<img src="https://github.com/aleksandr-hrankin/pictures/blob/main/project_cinema_uml.png" alt="project_cinema_uml" width="600"/>
+
 One user can have multiple roles. <br>
 ##### No role: <br>
   - Registration
